@@ -1,4 +1,6 @@
 vim/plugged
 vim/undo
 vim/.init.vim-rplugin*
+vim/.netrwhist*
 tags
+vim/vim
