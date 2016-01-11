@@ -29,3 +29,7 @@ for file in $files; do
     echo "Creating symlink to $file in home directory."
     ln -s $dir/$file ~/.$file
 done
+
+
+# Setup required dirs and files
+mkdir -p $dir/vim/undo
