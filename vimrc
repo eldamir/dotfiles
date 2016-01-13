@@ -18,6 +18,7 @@ Plug 'ludovicchabant/vim-gutentags'
 Plug 'Valloric/MatchTagAlways'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'alvan/vim-closetag'
 " Plug 'SirVer/ultisnips'
 " Plug 'honza/vim-snippets'
 
@@ -141,6 +142,8 @@ let g:airline_powerline_fonts = 1
 " Auto-pairs
 let g:AutoPairsMapCR = 0
 
+" closetag
+let g:closetag_filenames = "*.html,*.xhtml,*.phtml"
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ KEYBINDINGS
@@ -163,6 +166,8 @@ nnoremap <leader>h :bprev<cr>
 nnoremap <leader>l :bnext<cr>
 " Destroy current buffer
 nnoremap <leader>x :bd<cr>
+" Destroy all buffers
+nnoremap <leader>x :bufdo bd<cr>
 " Quicksave
 nnoremap <leader><leader> :wa<cr>
 " Bigger status window
