@@ -19,6 +19,7 @@ Plug 'Valloric/MatchTagAlways'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'alvan/vim-closetag'
+Plug 'scrooloose/syntastic'
 " Plug 'SirVer/ultisnips'
 " Plug 'honza/vim-snippets'
 
@@ -145,6 +146,16 @@ let g:AutoPairsMapCR = 0
 " closetag
 let g:closetag_filenames = "*.html,*.xhtml,*.phtml"
 
+" Syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ KEYBINDINGS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -167,7 +178,7 @@ nnoremap <leader>l :bnext<cr>
 " Destroy current buffer
 nnoremap <leader>x :bd<cr>
 " Destroy all buffers
-nnoremap <leader>x :bufdo bd<cr>
+nnoremap <leader>X :bufdo bd<cr>
 " Quicksave
 nnoremap <leader><leader> :wa<cr>
 " Bigger status window
