@@ -19,7 +19,8 @@ Plug 'Valloric/MatchTagAlways'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'alvan/vim-closetag'
-Plug 'scrooloose/syntastic'
+Plug 'benekastah/neomake'
+Plug 'FredKSchott/CoVim'
 " Plug 'SirVer/ultisnips'
 " Plug 'honza/vim-snippets'
 
@@ -146,20 +147,10 @@ let g:AutoPairsMapCR = 0
 " closetag
 let g:closetag_filenames = "*.html,*.xhtml,*.phtml"
 
-" Syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-" Better :sign interface symbols
-let g:syntastic_error_symbol = 'E'
-let g:syntastic_style_error_symbol  = 'SE'
-let g:syntastic_warning_symbol = 'W'
-let g:syntastic_style_warning_symbol = 'SW'
+" Neomake
+" make on write
+autocmd! BufWritePost,BufEnter * Neomake
+let g:neomake_python_enabled_makers = ['pep8', 'pylint']
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -187,6 +178,8 @@ nnoremap <leader>x :bd<cr>
 nnoremap <leader>X :bufdo bd<cr>
 " Quicksave
 nnoremap <leader><leader> :wa<cr>
+" Repeat macro
+nnoremap ; @@
 " Bigger status window
 nmap <leader>gs :Gstatus<CR><C-w>20+
 " Go to definition
