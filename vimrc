@@ -35,6 +35,8 @@ Plug 'Shougo/unite.vim'
 Plug 'Shougo/vimproc.vim', {'do': 'make'}
 Plug 'Shougo/unite-outline'
 Plug 'Shougo/deoplete.nvim'
+Plug 'Shougo/neosnippet'
+Plug 'Shougo/neosnippet-snippets'
 
 " Colors
 Plug 'flazz/vim-colorschemes'
@@ -107,16 +109,29 @@ set ignorecase
 " Deoplete
 let g:deoplete#enable_at_startup = 1
 
+" Neosnippets
+" Plugin key-mappings.
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+" SuperTab like snippets behavior.
+"imap <expr><TAB>
+" \ pumvisible() ? "\<C-n>" :
+" \ neosnippet#expandable_or_jumpable() ?
+" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+" For conceal markers.
+if has('conceal')
+  set conceallevel=2 concealcursor=niv
+endif
+
 " The Silver Searcher
 if executable('ag')
   " Use ag over grep
   set grepprg=ag\ --nogroup\ --nocolor
-
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-
-  " ag is fast enough that CtrlP doesn't need to cache
-  let g:ctrlp_use_caching = 0
 endif
 
 let g:unite_source_rec_async_command = ['ag', '--follow', '--nocolor', '--nogroup', '-g', '']
@@ -126,13 +141,6 @@ call unite#filters#sorter_default#use(['sorter_rank'])
 " Make Ack and Ag not open first match automatically
 cabbrev Ack Ack!
 cabbrev Ag Ag!
-
-" CtrlP
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/](\.git|node_modules|\.sass-cache|bower_components|build|media|__pycache__)$',
-  \ 'file': '\v\.(exe|so|dll|pyc)$',
-  \ 'link': 'some_bad_symbolic_links',
-  \ }
 
 " Airline
 set laststatus=2
@@ -148,7 +156,6 @@ let g:AutoPairsMapCR = 0
 let g:closetag_filenames = "*.html,*.xhtml,*.phtml"
 
 " Neomake
-" make on write
 autocmd! BufWritePost,BufEnter * Neomake
 let g:neomake_python_enabled_makers = ['pep8', 'pylint']
 
@@ -157,6 +164,8 @@ let g:neomake_python_enabled_makers = ['pep8', 'pylint']
 """ KEYBINDINGS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" Map ESC to jk
+imap jk <Esc>
 """ Folding
 " Open all folds under cursor
 nnoremap <F8> zO
