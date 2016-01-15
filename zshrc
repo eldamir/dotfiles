@@ -104,6 +104,8 @@ alias tmux='tmux -2'
 alias pretty_json='python -mjson.tool'
 alias squash_pyc='find . -type f -name "*.pyc" -exec rm -f {} \;'
 alias squash_pycache='find . -type d -name "__pycache__" -exec rm -rf {} \;'
+alias vim='nvim'
+alias v='nvim'
 
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

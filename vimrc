@@ -156,8 +156,14 @@ let g:AutoPairsMapCR = 0
 let g:closetag_filenames = "*.html,*.xhtml,*.phtml"
 
 " Neomake
-autocmd! BufWritePost,BufEnter * Neomake
-let g:neomake_python_enabled_makers = ['pep8', 'pylint']
+autocmd! BufWritePost * Neomake
+let g:neomake_python_enabled_makers = ['pylint']
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""" Commands
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+command! ClearSearch let @/ = ""
+command! ToggleSearchHighlight set hlsearch!
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
