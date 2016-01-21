@@ -1,0 +1,13 @@
+[user]
+	email = ruben.nielsen@mosek.com
+	name = Ruben Nielsen
+[color]
+	ui = true
+[push]
+	default = simple
+[core]
+	editor = vim
+[init]
+	templatedir = /home/ruben/.git-templates
+[merge]
+	ff = false
