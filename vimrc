@@ -21,8 +21,9 @@ Plug 'junegunn/fzf.vim'
 Plug 'alvan/vim-closetag'
 Plug 'benekastah/neomake'
 Plug 'FredKSchott/CoVim'
-" Plug 'SirVer/ultisnips'
-" Plug 'honza/vim-snippets'
+Plug 'Valloric/YouCompleteMe', {'do': './install.py'}
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 
 " tpope stuff
 Plug 'tpope/vim-fugitive'
@@ -34,9 +35,11 @@ Plug 'tpope/vim-surround'
 Plug 'Shougo/unite.vim'
 Plug 'Shougo/vimproc.vim', {'do': 'make'}
 Plug 'Shougo/unite-outline'
-Plug 'Shougo/deoplete.nvim'
-Plug 'Shougo/neosnippet'
-Plug 'Shougo/neosnippet-snippets'
+" These seem inferior to YCM and Ultisnips,
+" event though they are optimized for neovim :(
+" Plug 'Shougo/deoplete.nvim'
+" Plug 'Shougo/neosnippet'
+" Plug 'Shougo/neosnippet-snippets'
 
 " Colors
 Plug 'flazz/vim-colorschemes'
@@ -85,7 +88,7 @@ let python_highlight_all = 1               " Python extra highlighting
 set number                                 " show line numbers
 set relativenumber                         " show relative line numbers
 set foldmethod=indent                      " Folding
-set foldlevelstart=6                       " Autofold on this level
+set foldlevelstart=99                      " Autofold on this level
 set backspace=2                            " Delete anything with backspace
 set sts=4                                  " Tab width
 set ts=4
@@ -106,22 +109,7 @@ set ignorecase
 """ PLUGINS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Deoplete
-let g:deoplete#enable_at_startup = 1
-
-" Neosnippets
-" Plugin key-mappings.
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
-
-" SuperTab like snippets behavior.
-"imap <expr><TAB>
-" \ pumvisible() ? "\<C-n>" :
-" \ neosnippet#expandable_or_jumpable() ?
-" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+let g:UltiSnipsExpandTrigger="<c-j>"
 
 " For conceal markers.
 if has('conceal')
@@ -172,7 +160,6 @@ command! ToggleSearchHighlight set hlsearch!
 
 " Map ESC to jk
 imap jk <Esc>
-""" Folding
 " Open all folds under cursor
 nnoremap <F8> zO
 " Close all folds under cursor
@@ -205,17 +192,12 @@ nnoremap <C-P> :Files<CR>
 nnoremap <C-O> :Tags<CR>
 nnoremap <C-I> :Buffers<CR>
 
-" Fuzzy outline
-" nnoremap <C-U> :Unite outline<CR>
+" YouCompleteMe
+map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+map <leader>d  :YcmCompleter GetDoc<CR>
+map <leader>u  :YcmCompleter GoToReferences<CR>
 
-" Search word under cursor
-nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
-
-" forward cycle deoplete menu
-inoremap <silent><expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
-" backward cycle deoplete menu
-inoremap <silent><expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
-
+" Jump out of terminal window to another window
 if has("nvim")
     :tnoremap <Esc> <C-\><C-n>
     :tnoremap <C-h> <C-\><C-n><C-w>h
@@ -223,21 +205,3 @@ if has("nvim")
     :tnoremap <C-k> <C-\><C-n><C-w>k
     :tnoremap <C-l> <C-\><C-n><C-w>l
 endif
-
-
-
-function! SetupEnvironment()
-  let l:path = expand('%:p')
-  if l:path =~ '/home/ruben/workspace/v3'
-    " Building
-    nnoremap <F9> :Dispatch env/bin/py.test --nomigrations --lf %<CR>
-    nnoremap <F10> :Dispatch env/bin/py.test --nomigrations --lf api v3 web<CR>
-    nnoremap <F11> :Dispatch env/bin/python manage.py runserver<CR>
-    nnoremap <S-F9> :Dispatch! env/bin/py.test --nomigrations --lf %<CR>
-    nnoremap <S-F10> :Dispatch! env/bin/py.test --nomigrations --lf api v3 web<CR>
-    nnoremap <S-F11> :Dispatch! env/bin/python manage.py runserver<CR>
-  elseif l:path =~ '/home/user/projects'
-    setlocal tabstop=4 shiftwidth=4 noexpandtab
-  endif
-endfunction
-autocmd! BufReadPost,BufNewFile * call SetupEnvironment()
