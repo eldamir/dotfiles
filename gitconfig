@@ -7,5 +7,3 @@
 	default = simple
 [core]
 	editor = vim
-[merge]
-	ff = false
