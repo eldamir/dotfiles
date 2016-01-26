@@ -21,7 +21,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'alvan/vim-closetag'
 Plug 'benekastah/neomake'
 Plug 'FredKSchott/CoVim'
-Plug 'blindFS/vim-taskwarrior'
 " Plug 'SirVer/ultisnips'
 " Plug 'honza/vim-snippets'
 
