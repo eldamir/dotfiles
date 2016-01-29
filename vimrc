@@ -8,6 +8,7 @@ filetype off                  " required
 " set the runtime path to include Vundle and initialize
 call plug#begin('~/.vim/plugged')
 
+Plug 'jaxbot/browserlink.vim'
 Plug 'rking/ag.vim'
 Plug 'Yggdroot/indentLine'
 Plug 'bling/vim-airline'
