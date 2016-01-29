@@ -107,5 +107,7 @@ alias squash_pycache='find . -type d -name "__pycache__" -exec rm -rf {} \;'
 alias vim='nvim'
 alias v='nvim'
 
+# Make sure terminal uses 256 colors
+export TERM=xterm-256color
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
