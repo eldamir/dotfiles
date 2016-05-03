@@ -6,7 +6,8 @@ sudo apt update && sudo apt -y upgrade
 # Install general packages
 sudo apt install python python-dev python-setuptools \
     python3 python3-dev python3-setuptools \
-    git gdebi zsh curl pylint
+    git gdebi zsh curl pylint \
+    build-essential cmake cpp c++ gcc
 
 # Get pip
 sudo easy_install pip

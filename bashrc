@@ -3,21 +3,6 @@ export P4USER=ruben
 export P4PORT=ribe:1666
 export P4EDITOR=nano
 
-# Set proper keyboard on Bolton in X2GO sessions
-#if [[ $- =~ "i" && $HOSTNAME = "bolton" ]]; then
-#   echo "Setting up environment for bolton"
-#   setxkbmap dk
-#   # Source /etc/profile and $HOME/.profile
-#   # This should fix path issues in X2Go sessions
-#   if [ -r /etc/profile ]; then
-#     source /etc/profile
-#   fi
-#   if [ -r $HOME/.profile ]; then
-#     source $HOME/.profile
-#   fi
-#fi
-setxkbmap dk &> /dev/null
-
 txtblk='\e[0;30m' # Black - Regular
 txtred='\e[0;31m' # Red
 txtgrn='\e[0;32m' # Green
@@ -74,10 +59,10 @@ alias pretty_json='python -mjson.tool'
 alias squash_pyc='find . -type f -name "*.pyc" -exec rm -f {} \;'
 alias squash_pycache='find . -type d -name "__pycache__" -exec rm -rf {} \;'
 
-source ~/bin/git-prompt.sh
+# source ~/bin/git-prompt.sh
 
 # Color for the prompt
-PS1="${txtblu}\u${txtrst}@${txtgrn}\h${txtylw}\$(__git_ps1)${txtrst}:${txtred}\w${txtrst}\n \$ "
+# PS1="${txtblu}\u${txtrst}@${txtgrn}\h${txtylw}\$(__git_ps1)${txtrst}:${txtred}\w${txtrst}\n \$ "
 
 
 #function _update_ps1() {
@@ -97,3 +82,7 @@ export JAVA_HOME=/usr/lib/jvm/java-8-oracle
 export FZF_DEFAULT_COMMAND='ag -g ""'
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/home/ruben/.sdkman"
+[[ -s "/home/ruben/.sdkman/bin/sdkman-init.sh" ]] && source "/home/ruben/.sdkman/bin/sdkman-init.sh"

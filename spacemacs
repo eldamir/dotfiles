@@ -37,6 +37,7 @@ values."
      version-control
      python
      django
+     typescript
      themes-megapack
      xkcd
      git
@@ -244,18 +245,28 @@ It is called immediately after `dotspacemacs/init'.  You are free to put almost
 any user code here.  The exception is org related code, which should be placed
 in `dotspacemacs/user-config'."
   (global-linum-mode) ;; Always show line numbers
-  ;; Fix annoying font issues
-  (set-face-attribute 'default nil :family "Source Code Pro")
-  (set-face-attribute 'default nil :height 100)
   ;; treat snake case as one word
   (with-eval-after-load 'python
       (modify-syntax-entry ?_ "w" python-mode-syntax-table))
-  )
+  ;; Sync emacs and system clipboard
+  (setq x-select-enable-clipboard t)
+
+  ;; Auto-save buffer of focus loss
+  (defadvice switch-to-buffer (before save-buffer-now activate)
+    (when buffer-file-name (save-buffer)))
+  (defadvice other-window (before other-window-now activate)
+    (when buffer-file-name (save-buffer)))
+)
 
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
 This function is called at the very end of Spacemacs initialization after
 layers configuration. You are free to put any user code."
+  ;; Fix annoying font issues
+  (set-face-attribute 'default nil :family "Source Code Pro")
+  (set-face-attribute 'default nil :height 100)
+  ;; Always show fill-column-indicator
+  (turn-on-fci-mode)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
