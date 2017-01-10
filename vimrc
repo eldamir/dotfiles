@@ -25,12 +25,20 @@ Plug 'FredKSchott/CoVim'
 Plug 'Valloric/YouCompleteMe', {'do': './install.py'}
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+Plug 'jceb/vim-orgmode'
+Plug 'davidhalter/jedi-vim'
+Plug 'udalov/kotlin-vim'
+Plug 'easymotion/vim-easymotion'
+
+" PERL style regex in search and replace
+Plug 'othree/eregex.vim'
 
 " tpope stuff
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-speeddating'
 
 " Shougo stuff
 Plug 'Shougo/unite.vim'
@@ -159,8 +167,6 @@ command! ToggleSearchHighlight set hlsearch!
 """ KEYBINDINGS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Map ESC to jk
-imap jk <Esc>
 " Open all folds under cursor
 nnoremap <F8> zO
 " Close all folds under cursor
@@ -187,6 +193,9 @@ nnoremap ; @@
 nmap <leader>gs :Gstatus<CR><C-w>20+
 " Go to definition
 nnoremap <leader>d :YcmCompleter
+
+" Easymotionmap
+map <Leader>s <Plug>(easymotion-prefix)
 
 " FZF
 nnoremap <C-P> :Files<CR>

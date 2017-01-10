@@ -4,3 +4,4 @@ vim/.init.vim-rplugin*
 vim/.netrwhist*
 tags
 vim/vim
+vim/autoload
