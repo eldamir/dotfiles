@@ -267,6 +267,8 @@ layers configuration. You are free to put any user code."
   (turn-on-fci-mode)
   ;; Show indent guides
   (indent-guide-global-mode)
+  ;; Scrolloff
+  (setq scroll-margin 10)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
