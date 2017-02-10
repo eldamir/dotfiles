@@ -12,7 +12,7 @@
 # Make VMware behave
 exec --no-startup-id vmware-user
 # Set keyboard delay
-exec xset r rate 250 30
+exec xset r rate 250 25
 # Swap caps and escape
 exec /usr/bin/setxkbmap -option "caps:swapescape"
 # Run Compton
@@ -48,7 +48,7 @@ set $right l
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec terminator
+bindsym $mod+Return exec gnome-terminal
 
 # kill focused window
 bindsym $mod+Shift+q kill
