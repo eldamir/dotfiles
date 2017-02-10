@@ -1,1 +1,1 @@
-../vimrc
+/home/ruben/dotfiles/vimrc
