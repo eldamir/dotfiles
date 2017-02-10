@@ -67,7 +67,7 @@ source $ZSH/oh-my-zsh.sh
 export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-export EDITOR='vim'
+export EDITOR='nvim'
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -103,6 +103,11 @@ alias squash_pyc='find . -type f -name "*.pyc" -exec rm -f {} \;'
 alias squash_pycache='find . -type d -name "__pycache__" -exec rm -rf {} \;'
 alias v='vim'
 alias ag='ag -S'  # Use smartcase by default
+
+# functions
+function watch_tsx {
+find . -name "*.tsx" |entr npm run build
+}
 
 # Make sure terminal uses 256 colors
 export TERM=xterm-256color
