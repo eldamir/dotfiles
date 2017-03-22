@@ -86,10 +86,11 @@ export EDITOR='nvim'
 alias ll='ls -la --color'
 alias l='ls -CF --color'
 alias ls='ls --color'
+alias e='nvim'
 alias gp4='~/bin/git-p4.py'
 alias rsync='rsync -rav --progress'
 alias rdesktop='rdesktop -g 1200x1000 -k da'
-alias gits='git status'
+alias gits='git status -uall'
 alias gitu='git add -u'
 alias gitc='git commit'
 alias gitl='git log'
@@ -103,6 +104,8 @@ alias squash_pyc='find . -type f -name "*.pyc" -exec rm -f {} \;'
 alias squash_pycache='find . -type d -name "__pycache__" -exec rm -rf {} \;'
 alias v='vim'
 alias ag='ag -S'  # Use smartcase by default
+
+export ALTERNATE_EDITOR=""
 
 # functions
 function watch_tsx {

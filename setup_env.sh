@@ -7,7 +7,10 @@ sudo apt update && sudo apt -y upgrade
 sudo apt install python python-dev python-setuptools \
     python3 python3-dev python3-setuptools \
     git gdebi zsh curl pylint \
-    build-essential cmake cpp c++ gcc
+    build-essential cmake cpp c++ gcc nodejs npm
+
+# Install npm dependencies
+sudo npm install typescript tern
 
 # Get pip
 sudo easy_install pip
