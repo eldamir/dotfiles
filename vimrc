@@ -65,6 +65,7 @@ Plug 'alvan/vim-closetag'
 Plug 'neomake/neomake'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'ludovicchabant/vim-gutentags'
 
 "*****************************************************************************
 "" Custom bundles
@@ -248,7 +249,7 @@ let Grep_Skip_Files = '*.log *.db'
 let Grep_Skip_Dirs = '.git node_modules'
 
 " terminal emulation
-tnoremap <Esc> <C-\><C-n>
+" tnoremap <Esc> <C-\><C-n>
 if g:vim_bootstrap_editor == 'nvim'
   nnoremap <silent> <leader>sh :terminal<CR>
 endif
@@ -291,10 +292,10 @@ nmap <silent> <leader>pw :call DoWindowSwap()<CR>
 "" Autocmd Rules
 "*****************************************************************************
 "" The PC is fast enough, do syntax highlight syncing from start
-augroup vimrc-sync-fromstart
-  autocmd!
-  autocmd BufEnter * :syntax sync fromstart
-augroup END
+" augroup vimrc-sync-fromstart
+" "  autocmd!
+" "  autocmd BufEnter * :syntax sync fromstart
+" augroup END
 
 "" Remember cursor position
 augroup vimrc-remember-cursor-position
@@ -320,6 +321,9 @@ set autoread
 "*****************************************************************************
 "" Mappings
 "*****************************************************************************
+
+" Open .vimrc for edit
+nnoremap <leader>E :e ~/.vimrc<CR>
 
 "" Utils
 " Save all
@@ -431,6 +435,8 @@ noremap <leader>w :bn<CR>
 
 "" Close buffer
 noremap <leader>c :bd<CR>
+"" Close all buffer
+noremap <leader>C :%bd<CR>
 
 "" Clean search (highlight)
 nnoremap <silent> <leader><space> :noh<cr>
@@ -505,6 +511,13 @@ let g:airline#extensions#virtualenv#enabled = 1
 " Default highlight is better than polyglot
 let g:polyglot_disabled = ['python']
 let python_highlight_all = 1
+
+" Highlight current line
+augroup CursorLine
+  au!
+  au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+  au WinLeave * setlocal nocursorline
+augroup END
 
 
 "*****************************************************************************
