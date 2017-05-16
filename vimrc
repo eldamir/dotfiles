@@ -66,6 +66,7 @@ Plug 'neomake/neomake'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'ludovicchabant/vim-gutentags'
+Plug 'romainl/Apprentice'
 
 "*****************************************************************************
 "" Custom bundles
@@ -129,6 +130,9 @@ let mapleader=','
 "" Enable hidden buffers
 set hidden
 
+"" Don't resize my splits all the time >:(
+set noequalalways
+
 "" Searching
 set hlsearch
 set incsearch
@@ -158,7 +162,7 @@ set number
 
 let no_buffers_menu=1
 if !exists('g:not_finish_vimplug')
-  colorscheme molokai
+  colorscheme apprentice
 endif
 
 set mousemodel=popup
@@ -364,6 +368,17 @@ noremap <Leader>gs :Gstatus<CR>
 noremap <Leader>gb :Gblame<CR>
 noremap <Leader>gd :Gvdiff<CR>
 noremap <Leader>gr :Gremove<CR>
+noremap <Leader>gn :GitGutterNextHunk<CR>
+noremap <Leader>gp :GitGutterPrevHunk<CR>
+
+" Jump out of terminal window to another window
+if has("nvim")
+    :tnoremap <Esc> <C-\><C-n>
+    :tnoremap <C-h> <C-\><C-n><C-w>h
+    :tnoremap <C-j> <C-\><C-n><C-w>j
+    :tnoremap <C-k> <C-\><C-n><C-w>k
+    :tnoremap <C-l> <C-\><C-n><C-w>l
+endif
 
 " session management
 nnoremap <leader>so :OpenSession<Space>
@@ -393,6 +408,7 @@ endif
 
 " cnoremap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
 nnoremap <C-P> :Files<CR>
+nnoremap <C-T> :Tags<CR>
 nnoremap <C-F> :Ag<CR>
 noremap <leader>b :Buffers<CR>
 
