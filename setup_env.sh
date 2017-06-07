@@ -19,6 +19,12 @@ sudo easy_install3 pip
 # Install oh-my-zsh
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
+# Get diff highlighter
+mkdir -p ~/bin
+cd ~/bin
+wget https://raw.github.com/git/git/master/contrib/diff-highlight/diff-highlight && chmod +x diff-highlight
+cd
+
 # Install nvim
 sudo apt-get install software-properties-common
 sudo add-apt-repository ppa:neovim-ppa/unstable
