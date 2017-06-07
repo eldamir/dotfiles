@@ -61,6 +61,7 @@ Plug 'Valloric/YouCompleteMe', {'do': './install.sh --clang-completer --tern-com
 Plug 'vimwiki/vimwiki'
 Plug 'simeji/winresizer'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-abolish'
 Plug 'alvan/vim-closetag'
 Plug 'neomake/neomake'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -158,6 +159,7 @@ let g:session_command_aliases = 1
 "*****************************************************************************
 syntax on
 set ruler
+set relativenumber 
 set number
 
 let no_buffers_menu=1
@@ -355,6 +357,9 @@ nnoremap U <C-r>
 " Clear search
 noremap <silent><leader>/ :nohls<CR>
 
+" Quickly jump to next error in quicklist
+nnoremap <leader>n :cn<CR>
+
 "" Split
 noremap <Leader>h :<C-u>split<CR>
 noremap <Leader>v :<C-u>vsplit<CR>
@@ -464,8 +469,8 @@ noremap <C-l> <C-w>l
 noremap <C-h> <C-w>h
 
 "" Vmap for maintain Visual Mode after shifting > and <
-vmap < <gv
-vmap > >gv
+" vmap < <gv
+" vmap > >gv
 
 "" Move visual block
 vnoremap J :m '>+1<CR>gv=gv
