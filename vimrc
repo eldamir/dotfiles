@@ -88,7 +88,7 @@ Plug 'jelera/vim-javascript-syntax'
 
 " python
 "" Python Bundle
-Plug 'davidhalter/jedi-vim'
+Plug 'davidhalter/jedi-vim', {'do': 'git submodule update --init'}
 
 
 "*****************************************************************************
