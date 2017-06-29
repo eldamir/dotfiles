@@ -12,3 +12,5 @@
     diff = diff-highlight | less
     log = diff-highlight | less
     show = diff-highlight | less
+[alias]
+	first = rev-list --max-parents=0 HEAD
