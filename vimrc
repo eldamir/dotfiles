@@ -159,7 +159,7 @@ let g:session_command_aliases = 1
 "*****************************************************************************
 syntax on
 set ruler
-set relativenumber 
+set relativenumber
 set number
 
 let no_buffers_menu=1

@@ -10,12 +10,15 @@
 #
 
 # Make VMware behave
-exec --no-startup-id vmware-user
+# exec --no-startup-id vmware-user
 # Set keyboard delay
 exec xset r rate 250 25
 
+# Restore feh background settings
+exec --no-startup-id ~/.fehbg &
+
 # Run Compton
-exec /usr/bin/compton --config /home/ruben/.compton.conf ~.i3/config
+# exec /usr/bin/compton --config /home/ruben/.compton.conf ~.i3/config
 
 # Store global modifier key reference. Mod1=Alt, Mod4=super
 set $mod Mod4
