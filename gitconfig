@@ -6,11 +6,10 @@
 [push]
 	default = simple
 [core]
-	editor = vim
+	editor = nvim
 	autocrlf = input
-[pager]
-    diff = diff-highlight | less
-    log = diff-highlight | less
-    show = diff-highlight | less
 [alias]
 	first = rev-list --max-parents=0 HEAD
+    co = checkout
+[merge]
+	tool = kdiff3

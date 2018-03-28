@@ -5,5 +5,7 @@ setlocal textwidth=80
 setlocal smarttab
 setlocal expandtab
 setlocal nosmartindent
+
 " Don't break lines at textwidth
-set fo-=t
+setlocal fo-=t
+setlocal iskeyword-=.

@@ -48,8 +48,8 @@ endif
 Plug 'Shougo/vimproc.vim', {'do': g:make}
 
 "" Vim-Session
-Plug 'xolox/vim-misc'
-Plug 'xolox/vim-session'
+" Plug 'xolox/vim-misc'
+" Plug 'xolox/vim-session'
 
 Plug 'honza/vim-snippets'
 
@@ -57,17 +57,29 @@ Plug 'honza/vim-snippets'
 Plug 'tomasr/molokai'
 
 "" Personal additions
-Plug 'Valloric/YouCompleteMe', {'do': './install.sh --clang-completer --tern-completer'}
+" Plug 'Valloric/YouCompleteMe', {'do': './install.sh --clang-completer --tern-completer'}
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
+let g:deoplete#enable_at_startup = 1
+
 Plug 'vimwiki/vimwiki'
 Plug 'simeji/winresizer'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-abolish'
+Plug 'tpope/vim-speeddating'
 Plug 'alvan/vim-closetag'
-Plug 'neomake/neomake'
+Plug 'w0rp/ale'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'romainl/Apprentice'
+Plug 'dhruvasagar/vim-table-mode'
+Plug 'jceb/vim-orgmode'
 
 "*****************************************************************************
 "" Custom bundles
@@ -76,7 +88,7 @@ Plug 'romainl/Apprentice'
 " html
 "" HTML Bundle
 Plug 'hail2u/vim-css3-syntax'
-Plug 'gorodinskiy/vim-coloresque'
+" Plug 'gorodinskiy/vim-coloresque'
 Plug 'tpope/vim-haml'
 Plug 'mattn/emmet-vim'
 
@@ -104,6 +116,8 @@ call plug#end()
 " Required:
 filetype plugin indent on
 
+au BufNewFile,BufRead *.rst			set filetype=rst
+
 
 "*****************************************************************************
 "" Basic Setup
@@ -127,6 +141,7 @@ set expandtab
 
 "" Map leader to ,
 let mapleader=' '
+let maplocalleader=','
 
 "" Enable hidden buffers
 set hidden
@@ -215,7 +230,6 @@ endif
 
 " vim-airline
 let g:airline_theme = 'powerlineish'
-let g:airline#extensions#neomake#enabled = 1
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tagbar#enabled = 1
@@ -328,6 +342,9 @@ set autoread
 "" Mappings
 "*****************************************************************************
 
+" deoplete tab-complete
+inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+
 " Open .vimrc for edit
 nnoremap <leader>E :e ~/.vimrc<CR>
 
@@ -392,9 +409,9 @@ nnoremap <leader>sd :DeleteSession<CR>
 nnoremap <leader>sc :CloseSession<CR>
 
 "" Tabs
-nnoremap <Tab> gt
-nnoremap <S-Tab> gT
-nnoremap <silent> <S-t> :tabnew<CR>
+" nnoremap <Tab> gt
+" nnoremap <S-Tab> gT
+" nnoremap <silent> <S-t> :tabnew<CR>
 
 "" Set working directory
 nnoremap <leader>. :lcd %:p:h<CR>
@@ -449,10 +466,17 @@ if has('macunix')
 endif
 
 "" Buffer nav
-noremap <leader>z :bp<CR>
-noremap <leader>q :bp<CR>
-noremap <leader>x :bn<CR>
-noremap <leader>w :bn<CR>
+noremap <S-Tab> :bp<CR>
+noremap <Tab> :bn<CR>
+noremap <leader>1 :b1<CR>
+noremap <leader>2 :b2<CR>
+noremap <leader>3 :b3<CR>
+noremap <leader>4 :b4<CR>
+noremap <leader>5 :b5<CR>
+noremap <leader>6 :b6<CR>
+noremap <leader>7 :b7<CR>
+noremap <leader>8 :b8<CR>
+noremap <leader>9 :b9<CR>
 
 "" Close buffer
 noremap <leader>c :bd<CR>
@@ -487,6 +511,9 @@ nnoremap <Leader>o :.Gbrowse<CR>
 " for html files, 2 spaces
 autocmd Filetype html setlocal ts=2 sw=2 expandtab
 
+" vim-ale
+let g:ale_completion_enabled = 1
+
 " vim-autoclose
 let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.jsx,*.tsx"
 
@@ -515,15 +542,11 @@ let g:jedi#popup_on_dot = 0
 let g:jedi#goto_assignments_command = "<leader>g"
 let g:jedi#goto_definitions_command = "<leader>d"
 let g:jedi#documentation_command = "K"
-let g:jedi#usages_command = "<leader>n"
+let g:jedi#usages_command = "<leader>u"
 let g:jedi#rename_command = "<leader>r"
 let g:jedi#show_call_signatures = "0"
 let g:jedi#completions_command = "<C-Space>"
 let g:jedi#smart_auto_mappings = 0
-
-" Neomake
-autocmd BufWritePost,BufEnter * silent! update | Neomake
-
 
 " vim-airline
 let g:airline#extensions#virtualenv#enabled = 1
@@ -576,14 +599,14 @@ if !exists('g:airline_powerline_fonts')
   let g:airline_symbols.paste     = '∥'
   let g:airline_symbols.whitespace = 'Ξ'
 else
-  let g:airline#extensions#tabline#left_sep = ''
-  let g:airline#extensions#tabline#left_alt_sep = ''
+  let g:airline#extensions#tabline#left_sep = '|'
+  let g:airline#extensions#tabline#left_alt_sep = '|'
 
   " powerline symbols
-  let g:airline_left_sep = ''
-  let g:airline_left_alt_sep = ''
-  let g:airline_right_sep = ''
-  let g:airline_right_alt_sep = ''
+  let g:airline_left_sep = '|'
+  let g:airline_left_alt_sep = '|'
+  let g:airline_right_sep = '|'
+  let g:airline_right_alt_sep = '|'
   let g:airline_symbols.branch = ''
   let g:airline_symbols.readonly = ''
   let g:airline_symbols.linenr = ''

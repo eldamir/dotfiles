@@ -95,7 +95,7 @@ alias gitu='git add -u'
 alias gitp='git add -p'
 alias gitc='git commit'
 alias gitl='git log'
-alias git-tree='git log --oneline --graph --decorate --all'
+alias git-tree='git log --oneline --graph --decorate'
 alias emacss='emacs --no-window-system'
 alias ack='ack-grep'
 alias updateit='sudo apt update && sudo apt -y upgrade'
@@ -105,16 +105,15 @@ alias squash_pyc='find . -type f -name "*.pyc" -exec rm -f {} \;'
 alias squash_pycache='find . -type d -name "__pycache__" -exec rm -rf {} \;'
 alias v='vim'
 alias ag='ag -S'  # Use smartcase by default
+alias gitclean='git branch --merged develop | egrep -v \"(^\*|master|develop)\" | xargs -r git branch -d'
 
 export ALTERNATE_EDITOR=""
 
-# functions
-function watch_tsx {
-find . -name "*.tsx" |entr npm run build
-}
+# Start ssh agent for all shells
+eval "$(ssh-agent)" > /dev/null
 
 # Make sure terminal uses 256 colors
-export TERM=xterm-256color
+#export TERM=xterm-256color
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
